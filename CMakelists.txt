@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0)
+
+# Fix behavior of CMAKE_CXX_STANDARD when targeting macOS.
+# if (POLICY CMP0025)
+#   cmake_policy(SET CMP0025 NEW)
+# endif ()
+
+project(boost_signal_demo)
+
+set (CMAKE_CXX_STANDARD 11)
+
+set(SOURCE main.cpp)
+
+find_package(Boost)
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  add_executable(${PROJECT_NAME} ${SOURCE})
+  target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+endif()
+
